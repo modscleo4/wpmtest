@@ -64,14 +64,19 @@
         <div class="container">
             <header>
                 <div class="stats">
-                    <span class="speed">{{ speed }} WPM</span>
-                    <span class="timer">{{ Math.round(timer / 10) }} s</span>
-                    <span>
+                    <div class="main-stats">
+                        <span class="speed">{{ speed }} WPM</span>
+                        <span class="timer">{{ Math.round(timer / 10) }} s</span>
+                    </div>
+
+                    <div class="keytype-stats">
+                        <span>
                         <span class="right">{{ right }}</span> / <span class="wrong">{{ wrong }}</span> chars
-                    </span>
-                    <span>
-                        <span class="words-right">{{ wordsRight }}</span> / <span class="words-wrong">{{ wordsWrong }}</span> words
-                    </span>
+                        </span>
+                        <span>
+                            <span class="words-right">{{ wordsRight }}</span> / <span class="words-wrong">{{ wordsWrong }}</span> words
+                        </span>
+                    </div>
                 </div>
             </header>
 
@@ -86,7 +91,7 @@
             </div>
 
             <div class="input-wrapper">
-                <input id="wpm_input" name="wpm_input" type="text" class="form-control" v-model="typed" placeholder="Type here." :readonly="!text || timer === 0" autofocus @keydown="keydown($event)" />
+                <input id="wpm_input" name="wpm_input" type="text" class="form-control" v-model="typed" placeholder="Type here." :readonly="!text || timer === 0" autofocus @input="calculateWrongChars" @keydown="keydown($event)" />
             </div>
         </div>
     </div>

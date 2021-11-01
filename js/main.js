@@ -50,7 +50,7 @@ const app = Vue.createApp({
         },
 
         wrong() {
-            this._wrong = Math.max(this._wrong, this.full_typed_text().split(' ').map((word, i) => word.split('').filter((char, j) => j >= this.text_words[i].length || this.text_words[i][j] !== char).length).reduce((acc, v) => acc + v, 0));
+            //this._wrong = Math.max(this._wrong, this.full_typed_text().split(' ').map((word, i) => word.split('').filter((char, j) => j >= this.text_words[i].length || this.text_words[i][j] !== char).length).reduce((acc, v) => acc + v, 0));
             return this._wrong;
         },
 
@@ -90,7 +90,7 @@ const app = Vue.createApp({
         },
 
         net_wpm() {
-            return this.gross_wpm() - this.wordsWrong / this.elapsed_time * 600;
+            return this.gross_wpm() - this.wrong / 5 / this.elapsed_time * 600;
         },
 
         keydown(e) {
@@ -131,6 +131,13 @@ const app = Vue.createApp({
                 if (this.typed.split('').filter((char, i) => char !== this.text_words[this.currentWord][i]).length === 0) {
                     e.preventDefault();
                 }
+            }
+        },
+
+        calculateWrongChars() {
+            const index = this.typed.length - 1;
+            if (!this.letterRight(index)) {
+                this._wrong++;
             }
         },
 

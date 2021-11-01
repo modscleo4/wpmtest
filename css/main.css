@@ -176,10 +176,33 @@ a:hover {
 
 .stats {
     display: grid;
+    grid-auto-flow: row;
+    grid-gap: 16px;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stats div {
+    display: grid;
     grid-auto-flow: column;
     grid-gap: 24px;
     justify-content: center;
-    font-size: 1.5rem;
+}
+
+.stats .main-stats {
+    font-size: 2rem;
+}
+
+.stats span {
+    position: relative;
+}
+
+.stats div > span:not(:first-child)::before {
+    color: var(--text-color-inactive);
+    content: '|';
+    position: absolute;
+    top: 0;
+    left: -1rem;
 }
 
 .stats .timer {
@@ -204,26 +227,6 @@ a:hover {
     flex-wrap: wrap;
     max-height: 220px;
     overflow: hidden;
-}
-
-.input-wrapper {
-    display: flex;
-    justify-content: center;
-}
-
-#wpm_input {
-    background-color: var(--input-background-color);
-    border-color: var(--input-border-color);
-    color: var(--text-color);
-    width: 24rem;
-}
-
-#wpm_input:hover {
-    border-color: var(--input-border-color-hover);
-}
-
-#wpm_input:focus {
-    border-color: var(--input-border-color-focus);
 }
 
 .typing-text span {
@@ -278,4 +281,24 @@ a:hover {
 
 .typing-text span.current .wrong {
     color: var(--text-color-wrong);
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#wpm_input {
+    background-color: var(--input-background-color);
+    border-color: var(--input-border-color);
+    color: var(--text-color);
+    width: 24rem;
+}
+
+#wpm_input:hover {
+    border-color: var(--input-border-color-hover);
+}
+
+#wpm_input:focus {
+    border-color: var(--input-border-color-focus);
 }
