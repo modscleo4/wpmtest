@@ -94,7 +94,7 @@ const app = Vue.createApp({
         },
 
         keydown(e) {
-            if (!this.timerFn && this.text) {
+            if (!this.timerFn && this.text && this.typed) {
                 this.timerFn = setInterval(() => {
                     this.timer--;
                     if (this.timer === 0) {
