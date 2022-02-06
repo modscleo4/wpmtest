@@ -7,7 +7,7 @@ const app = Vue.createApp({
         text: '',
         currentWord: 0,
         initialTimer: 600,
-        timer: 0,
+        timer: -1,
         timerFn: null,
         textTyped: '',
         typed: '',
@@ -15,6 +15,7 @@ const app = Vue.createApp({
         _wrong: 0,
         wordsRight: 0,
         wordsWrong: 0,
+        modal: null,
 
         config: {
             get theme() {
@@ -29,14 +30,15 @@ const app = Vue.createApp({
     }),
 
     mounted() {
-        this.timer = this.initialTimer;
         document.querySelector('#wpm_input').focus();
-
-        this.fetch_words();
     },
 
     computed: {
         text_words() {
+            if (this.timer === -1) {
+                return 'Press ENTER to restart'.split(' ');
+            }
+
             if (!this.text) {
                 return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'.split(' ');
             }
@@ -55,6 +57,10 @@ const app = Vue.createApp({
         },
 
         accuracy() {
+            if (!this.gross_wpm()) {
+                return 0;
+            }
+
             return this.net_wpm() / this.gross_wpm() * 100;
         },
 
@@ -81,6 +87,13 @@ const app = Vue.createApp({
             this.text = words.join(' ');
         },
 
+        async start() {
+            this.timer = this.initialTimer;
+            document.querySelector('#wpm_input').focus();
+
+            await this.fetch_words();
+        },
+
         full_typed_text() {
             return (this.textTyped + (this.typed ? ' ' + this.typed : '')).trimStart();
         },
@@ -93,12 +106,48 @@ const app = Vue.createApp({
             return this.gross_wpm() - this.wrong / 5 / this.elapsed_time * 600;
         },
 
+        keyup(e) {
+            const key = document.querySelector(`.key[data-key="${e.key.toUpperCase()}"]`);
+            if (key) {
+                key.classList.remove('active');
+            }
+        },
+
         keydown(e) {
-            if (!this.timerFn && this.text && this.typed) {
+            const key = document.querySelector(`.key[data-key="${e.key.toUpperCase()}"]`);
+            if (key) {
+                key.classList.add('active');
+            }
+
+            if (this.timer === -1) {
+                e.preventDefault();
+                if (e.keyCode === 13) {
+                    this.start();
+                }
+
+                return;
+            }
+
+            if (!this.timerFn && this.text && key) {
                 this.timerFn = setInterval(() => {
                     this.timer--;
                     if (this.timer === 0) {
-                        new bootstrap.Modal('#resultModal').show()
+                        this.modal = new bootstrap.Modal('#resultModal');
+                        this.modal.show();
+                        this.modal._element.addEventListener('hidden.bs.modal', () => {
+                            this.text = '';
+                            this.typed = '';
+                            this.textTyped = '';
+                            this.timer = -1;
+                            this.modal = null;
+                            this._right = 0;
+                            this._wrong = 0;
+                            this.wordsRight = 0;
+                            this.wordsWrong = 0;
+                            this.currentWord = 0;
+                            document.querySelector('#wpm_input').focus();
+                        });
+
                         clearInterval(this.timerFn);
                     }
 

@@ -6,7 +6,7 @@
     --body-color: rgb(147, 132, 212);
     --bg-img: url('../assets/bgD.svg');
 
-    --text-color: rgba(220, 220, 220, 1);
+    --text-color: rgb(200, 200, 200);
     --text-color-inactive: rgb(146, 146, 146);
     --text-color-right: rgb(79, 155, 89);
     --text-color-wrong: rgb(184, 62, 62);
@@ -57,7 +57,7 @@
         --body-color: rgb(147, 132, 212);
         --bg-img: url('../assets/bgD.svg');
 
-        --text-color: rgba(220, 220, 220, 1);
+        --text-color: rgb(200, 200, 200);
         --text-color-inactive: rgb(146, 146, 146);
         --text-color-right: rgb(79, 155, 89);
         --text-color-wrong: rgb(184, 62, 62);

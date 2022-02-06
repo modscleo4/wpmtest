@@ -153,6 +153,17 @@ a:hover {
     text-align: center;
 }
 
+.timer-bar {
+    --timer: 100%;
+    width: var(--timer);
+    height: 1rem;
+    background-color: var(--body-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 200ms ease-out;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -250,7 +261,7 @@ a:hover {
 }
 
 .typing-text span.current .current {
-    color: var(--text-color-hover);
+    color: var(--link-color);
     position: relative;
 }
 
@@ -301,4 +312,56 @@ a:hover {
 
 #wpm_input:focus {
     border-color: var(--input-border-color-focus);
+}
+
+.keyboard {
+    display: grid;
+    grid-auto-flow: row;
+    grid-gap: 12px;
+    justify-content: center;
+}
+
+.keyboard .row {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 12px;
+    justify-content: start;
+}
+
+.keyboard .row:nth-child(2) {
+    padding-left: 0.75rem;
+}
+
+.keyboard .row:nth-child(3) {
+    padding-left: 1.5rem;
+}
+
+.keyboard .row:nth-child(4) {
+    padding-left: 5.5rem;
+}
+
+.keyboard .row .key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 4px;
+    background-color: var(--input-background-color);
+    border-color: var(--input-border-color);
+    color: var(--text-color);
+    font-size: 1.5rem;
+    padding: 4px;
+    user-select: none;
+    transition: background-color 100ms ease-in-out;
+}
+
+.keyboard .row .key.space {
+    width: 16rem;
+}
+
+.keyboard .row .key.active {
+    background-color: var(--btn-background-color-hover);
+    border-color: var(--btn-background-color-hover);
+    color: var(--btn-text-color);
 }

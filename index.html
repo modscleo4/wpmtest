@@ -31,6 +31,8 @@
     <script type="text/javascript" src="js/theme.js"></script>
 
     <div id="app">
+        <div :style="{'--timer': `${Math.max(0, 100 * timer / initialTimer)}%`}" class="timer-bar"></div>
+
         <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModal"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -91,7 +93,50 @@
             </div>
 
             <div class="input-wrapper">
-                <input id="wpm_input" name="wpm_input" type="text" class="form-control" v-model="typed" placeholder="Type here." :readonly="!text || timer === 0" autofocus @input="calculateWrongChars" @keydown="keydown($event)" />
+                <input id="wpm_input" name="wpm_input" type="text" class="form-control" v-model="typed" placeholder="Type here." :readonly="!text || timer === 0" autofocus @input="calculateWrongChars" @keyup="keyup($event)" @keydown="keydown($event)" />
+            </div>
+
+            <div class="keyboard">
+                <div class="row">
+                    <span data-key="Q" class="key">Q</span>
+                    <span data-key="W" class="key">W</span>
+                    <span data-key="E" class="key">E</span>
+                    <span data-key="R" class="key">R</span>
+                    <span data-key="T" class="key">T</span>
+                    <span data-key="Y" class="key">Y</span>
+                    <span data-key="U" class="key">U</span>
+                    <span data-key="I" class="key">I</span>
+                    <span data-key="O" class="key">O</span>
+                    <span data-key="P" class="key">P</span>
+                </div>
+
+                <div class="row">
+                    <span data-key="A" class="key">A</span>
+                    <span data-key="S" class="key">S</span>
+                    <span data-key="D" class="key">D</span>
+                    <span data-key="F" class="key">F</span>
+                    <span data-key="G" class="key">G</span>
+                    <span data-key="H" class="key">H</span>
+                    <span data-key="J" class="key">J</span>
+                    <span data-key="K" class="key">K</span>
+                    <span data-key="L" class="key">L</span>
+                </div>
+
+                <div class="row">
+                    <span data-key="Z" class="key">Z</span>
+                    <span data-key="X" class="key">X</span>
+                    <span data-key="C" class="key">C</span>
+                    <span data-key="V" class="key">V</span>
+                    <span data-key="B" class="key">B</span>
+                    <span data-key="N" class="key">N</span>
+                    <span data-key="M" class="key">M</span>
+                    <span data-key="," class="key">,</span>
+                    <span data-key="." class="key">.</span>
+                </div>
+
+                <div class="row">
+                    <span data-key=" " class="key space"></span>
+                </div>
             </div>
         </div>
     </div>
