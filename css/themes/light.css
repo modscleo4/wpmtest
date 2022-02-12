@@ -7,6 +7,7 @@
     --bg-img: url('../assets/bgW.svg');
 
     --text-color:  rgb(81, 81, 81);
+    --text-caret: rgb(90, 90, 90);
     --text-color-inactive: rgb(100, 100, 100);
     --text-color-right: rgb(79, 155, 89);
     --text-color-wrong: rgb(184, 62, 62);
@@ -18,6 +19,7 @@
     --link-color-active: rgb(75, 54, 170);
 
     --input-background-color: rgb(246, 246, 246);
+    --input-background-color-disabled:  rgb(216, 216, 216);
     --input-border-color: rgb(205, 205, 205);
     --input-border-color-hover: rgb(233, 233, 233);
     --input-border-color-focus: rgb(195, 195, 195);
@@ -59,6 +61,7 @@
 
         --text-color:  rgb(81, 81, 81);
         --text-color-inactive: rgb(100, 100, 100);
+        --text-caret: rgb(81, 81, 81);
         --text-color-right: rgb(79, 155, 89);
         --text-color-wrong: rgb(184, 62, 62);
         --text-color-right-faded: rgb(83, 109, 86);
@@ -69,6 +72,7 @@
         --link-color-active: rgb(75, 54, 170);
 
         --input-background-color: rgb(246, 246, 246);
+        --input-background-color-disabled:  rgb(216, 216, 216);
         --input-border-color: rgb(205, 205, 205);
         --input-border-color-hover: rgb(233, 233, 233);
         --input-border-color-focus: rgb(195, 195, 195);

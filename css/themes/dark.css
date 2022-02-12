@@ -7,6 +7,7 @@
     --bg-img: url('../assets/bgD.svg');
 
     --text-color: rgb(200, 200, 200);
+    --text-caret: rgb(88, 88, 88);
     --text-color-inactive: rgb(146, 146, 146);
     --text-color-right: rgb(79, 155, 89);
     --text-color-wrong: rgb(184, 62, 62);
@@ -58,6 +59,7 @@
         --bg-img: url('../assets/bgD.svg');
 
         --text-color: rgb(200, 200, 200);
+        --text-caret: rgb(88, 88, 88);
         --text-color-inactive: rgb(146, 146, 146);
         --text-color-right: rgb(79, 155, 89);
         --text-color-wrong: rgb(184, 62, 62);
@@ -69,6 +71,7 @@
         --link-color-active: rgb(75, 54, 170);
 
         --input-background-color: rgb(62, 62, 62);
+        --input-background-color-disabled: rgb(48, 48, 48);
         --input-border-color: rgb(88, 88, 88);
         --input-border-color-hover: rgb(28, 28, 28);
         --input-border-color-focus: rgb(50, 50, 50);

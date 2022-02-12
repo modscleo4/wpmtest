@@ -112,14 +112,14 @@ const app = Vue.createApp({
         },
 
         keyup(e) {
-            const key = document.querySelector(`.key[data-key="${e.key.toUpperCase()}"]`);
+            const key = document.querySelector(`.key.valid[data-key="${e.code}"]`);
             if (key) {
                 key.classList.remove('active');
             }
         },
 
         keydown(e) {
-            const key = document.querySelector(`.key[data-key="${e.key.toUpperCase()}"]`);
+            const key = document.querySelector(`.key.valid[data-key="${e.code}"]`);
             if (key) {
                 key.classList.add('active');
             }
@@ -150,11 +150,11 @@ const app = Vue.createApp({
                             this.wordsRight = 0;
                             this.wordsWrong = 0;
                             this.currentWord = 0;
+                            this.timerFn = null;
                             document.querySelector('#wpm_input').focus();
                         });
 
                         clearInterval(this.timerFn);
-                        this.timerFn = null;
                     }
 
                 }, 100);

@@ -271,7 +271,7 @@ a:hover {
     content: '|';
     font-weight: 100;
     font-family: sans-serif;
-    color: var(--input-border-color);
+    color: var(--text-caret);
     position: absolute;
     left: -6px;
     top: -16px;
@@ -317,19 +317,21 @@ a:hover {
 }
 
 .keyboard {
+    --gap: 12px;
     display: grid;
     grid-auto-flow: row;
-    grid-gap: 12px;
+    grid-gap: var(--gap);
     justify-content: center;
 }
 
 .keyboard .row {
+    position: relative;
     display: grid;
     grid-auto-flow: column;
-    grid-gap: 12px;
+    grid-gap: var(--gap);
     justify-content: start;
 }
-
+/*
 .keyboard .row:nth-child(2) {
     padding-left: 0.75rem;
 }
@@ -340,29 +342,98 @@ a:hover {
 
 .keyboard .row:nth-child(4) {
     padding-left: 5.5rem;
-}
+}*/
 
-.keyboard .row .key {
+.keyboard .key {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     width: 2rem;
     height: 2rem;
     border-radius: 4px;
-    background-color: var(--input-background-color);
+    background-color: var(--input-background-color-disabled);
     border-color: var(--input-border-color);
     color: var(--text-color);
-    font-size: 1.5rem;
+    font-size: 0.95rem;
     padding: 4px;
     user-select: none;
     transition: background-color 100ms ease-in-out;
 }
 
-.keyboard .row .key.space {
+.keyboard .key::before {
+    background-color: var(--input-background-color-disabled);
+}
+
+.keyboard .key.indicator {
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+.keyboard .key.symbol {
+    font-family: monospace;
+    font-size: 0.75rem;
+}
+
+.keyboard .key.space {
     width: 16rem;
 }
 
-.keyboard .row .key.active {
+.keyboard .key.tab {
+    width: 2.8rem;
+    font-size: 0.75rem;
+}
+
+.keyboard .key.capslock {
+    width: 3.5rem;
+    font-size: 0.75rem;
+}
+
+.keyboard .key.shift {
+    width: 2.6rem;
+    font-size: 0.75rem;
+}
+
+.keyboard .key.shiftright {
+    width: 3.6rem;
+    font-size: 0.75rem;
+}
+
+.keyboard .key.modifier {
+    width: 2.60rem;
+    font-size: 0.75rem;
+}
+
+.keyboard .key.backspace {
+    width: 4.25rem;
+    font-size: 0.75rem;
+}
+
+.keyboard .key.enter::before {
+    width: 24px;
+    height: 2rem;
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: -12px;
+    border-radius: 4px;
+    transition: background-color 100ms ease-in-out;
+}
+.keyboard .key.enter {
+    width: 2.75rem;
+    height: calc(4rem + var(--gap));
+    font-size: 0.75rem;
+    position: absolute;
+    right: 0;
+}
+
+.keyboard .key.valid,
+.keyboard .key.valid::before {
+    background-color: var(--input-background-color);
+}
+
+.keyboard .key.active,
+.keyboard .key.active::before {
     background-color: var(--btn-background-color-hover);
     border-color: var(--btn-background-color-hover);
     color: var(--btn-text-color);
