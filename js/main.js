@@ -149,6 +149,7 @@ const app = Vue.createApp({
                         });
 
                         clearInterval(this.timerFn);
+                        this.timerFn = null;
                     }
 
                 }, 100);

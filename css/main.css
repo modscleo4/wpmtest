@@ -191,6 +191,8 @@ a:hover {
     grid-gap: 16px;
     justify-content: center;
     font-size: 1.5rem;
+    overflow: hidden;
+    transition: max-height 100ms ease-out;
 }
 
 .stats div {

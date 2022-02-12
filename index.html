@@ -65,7 +65,7 @@
 
         <div class="container">
             <header>
-                <div class="stats">
+                <div class="stats" :style="{'max-height': this.timer === -1 ? '0' : '150px'}">
                     <div class="main-stats">
                         <span class="speed">{{ speed }} WPM</span>
                         <span class="timer">{{ Math.round(timer / 10) }} s</span>
