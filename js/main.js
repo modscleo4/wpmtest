@@ -16,6 +16,7 @@ const app = Vue.createApp({
         wordsRight: 0,
         wordsWrong: 0,
         modal: null,
+        tries: 0,
 
         config: {
             get theme() {
@@ -36,6 +37,9 @@ const app = Vue.createApp({
     computed: {
         text_words() {
             if (this.timer === -1) {
+                if (this.tries === 0) {
+                    return 'Press ENTER to start'.split(' ');
+                }
                 return 'Press ENTER to restart'.split(' ');
             }
 
@@ -89,6 +93,7 @@ const app = Vue.createApp({
 
         async start() {
             this.timer = this.initialTimer;
+            this.tries++;
             document.querySelector('#wpm_input').focus();
 
             await this.fetch_words();
