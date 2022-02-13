@@ -17,6 +17,11 @@ const app = Vue.createApp({
         wordsWrong: 0,
         modal: null,
         tries: 0,
+        state: {
+            shiftLeft: false,
+            shiftRight: false,
+            caps: false,
+        },
 
         config: {
             get theme() {
@@ -112,6 +117,12 @@ const app = Vue.createApp({
         },
 
         keyup(e) {
+            if (e.code === 'ShiftLeft') {
+                this.state.shiftLeft = false;
+            } else if (e.code === 'ShiftRight') {
+                this.state.shiftRight = false;
+            }
+
             const key = document.querySelector(`.key.valid[data-key="${e.code}"]`);
             if (key) {
                 key.classList.remove('active');
@@ -119,6 +130,14 @@ const app = Vue.createApp({
         },
 
         keydown(e) {
+            if (e.code === 'ShiftLeft') {
+                this.state.shiftLeft = true;
+            } else if (e.code === 'ShiftRight') {
+                this.state.shiftRight = true;
+            } else if (e.code === 'CapsLock') {
+                this.state.caps = !this.state.caps;
+            }
+
             const key = document.querySelector(`.key.valid[data-key="${e.code}"]`);
             if (key) {
                 key.classList.add('active');

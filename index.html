@@ -96,72 +96,220 @@
                 <input id="wpm_input" name="wpm_input" type="text" class="form-control" v-model="typed" placeholder="Type here." :readonly="!text || timer === 0" autofocus @input="calculateWrongChars" @keyup="keyup($event)" @keydown="keydown($event)" />
             </div>
 
-            <div class="keyboard">
+            <!-- ABNT2 Keyboard -->
+            <div class="keyboard" :class="{shift: this.state.shiftLeft || this.state.shiftRight, caps: this.state.caps}">
                 <div class="row">
-                    <span data-key="Backquote" class="key symbol">' "</span>
-                    <span data-key="Digit1" class="key">1 !</span>
-                    <span data-key="Digit2" class="key">2 @</span>
-                    <span data-key="Digit3" class="key">3 #</span>
-                    <span data-key="Digit4" class="key">4 $</span>
-                    <span data-key="Digit5" class="key">5 %</span>
-                    <span data-key="Digit6" class="key">6 ¨</span>
-                    <span data-key="Digit7" class="key">7 &</span>
-                    <span data-key="Digit8" class="key">8 *</span>
-                    <span data-key="Digit9" class="key">9 (</span>
-                    <span data-key="Digit0" class="key">0 )</span>
-                    <span data-key="Minus" class="key symbol">- _</span>
-                    <span data-key="Equal" class="key symbol">= +</span>
+                    <span data-key="Backquote" class="key symbol">
+                        <span class="normal">'</span>
+                        <span class="shift">"</span>
+                    </span>
+                    <span data-key="Digit1" class="key">
+                        <span class="normal">1</span>
+                        <span class="shift">!</span>
+                    </span>
+                    <span data-key="Digit2" class="key">
+                        <span class="normal">2</span>
+                        <span class="shift">@</span>
+                    </span>
+                    <span data-key="Digit3" class="key">
+                        <span class="normal">3</span>
+                        <span class="shift">#</span>
+                    </span>
+                    <span data-key="Digit4" class="key">
+                        <span class="normal">4</span>
+                        <span class="shift">$</span>
+                    </span>
+                    <span data-key="Digit5" class="key">
+                        <span class="normal">5</span>
+                        <span class="shift">%</span>
+                    </span>
+                    <span data-key="Digit6" class="key">
+                        <span class="normal">6</span>
+                        <span class="shift">¨</span>
+                    </span>
+                    <span data-key="Digit7" class="key">
+                        <span class="normal">7</span>
+                        <span class="shift">&amp;</span>
+                    </span>
+                    <span data-key="Digit8" class="key">
+                        <span class="normal">8</span>
+                        <span class="shift">*</span>
+                    </span>
+                    <span data-key="Digit9" class="key">
+                        <span class="normal">9</span>
+                        <span class="shift">(</span>
+                    </span>
+                    <span data-key="Digit0" class="key">
+                        <span class="normal">0</span>
+                        <span class="shift">)</span>
+                    </span>
+                    <span data-key="Minus" class="key symbol">
+                        <span class="normal">-</span>
+                        <span class="shift">_</span>
+                    </span>
+                    <span data-key="Equal" class="key symbol">
+                        <span class="normal">=</span>
+                        <span class="shift">+</span>
+                    </span>
                     <span data-key="Backspace" class="key backspace">BackSpace</span>
                 </div>
 
                 <div class="row">
                     <span data-key="Tab" class="key tab">Tab</span>
-                    <span data-key="KeyQ" class="key valid">Q</span>
-                    <span data-key="KeyW" class="key valid">W</span>
-                    <span data-key="KeyE" class="key valid">E</span>
-                    <span data-key="KeyR" class="key valid">R</span>
-                    <span data-key="KeyT" class="key valid">T</span>
-                    <span data-key="KeyY" class="key valid">Y</span>
-                    <span data-key="KeyU" class="key valid">U</span>
-                    <span data-key="KeyI" class="key valid">I</span>
-                    <span data-key="KeyO" class="key valid">O</span>
-                    <span data-key="KeyP" class="key valid">P</span>
-                    <span data-key="BracketLeft" class="key symbol">´ `</span>
-                    <span data-key="BracketRight" class="key symbol">[ {</span>
+                    <span data-key="KeyQ" class="key letter valid">
+                        <span class="normal">q</span>
+                        <span class="shift">Q</span>
+                    </span>
+                    <span data-key="KeyW" class="key letter valid">
+                        <span class="normal">w</span>
+                        <span class="shift">W</span>
+                    </span>
+                    <span data-key="KeyE" class="key letter valid">
+                        <span class="normal">e</span>
+                        <span class="shift">E</span>
+                    </span>
+                    <span data-key="KeyR" class="key letter valid">
+                        <span class="normal">r</span>
+                        <span class="shift">R</span>
+                    </span>
+                    <span data-key="KeyT" class="key letter valid">
+                        <span class="normal">t</span>
+                        <span class="shift">T</span>
+                    </span>
+                    <span data-key="KeyY" class="key letter valid">
+                        <span class="normal">y</span>
+                        <span class="shift">Y</span>
+                    </span>
+                    <span data-key="KeyU" class="key letter valid">
+                        <span class="normal">u</span>
+                        <span class="shift">U</span>
+                    </span>
+                    <span data-key="KeyI" class="key letter valid">
+                        <span class="normal">i</span>
+                        <span class="shift">I</span>
+                    </span>
+                    <span data-key="KeyO" class="key letter valid">
+                        <span class="normal">o</span>
+                        <span class="shift">O</span>
+                    </span>
+                    <span data-key="KeyP" class="key letter valid">
+                        <span class="normal">p</span>
+                        <span class="shift">P</span>
+                    </span>
+                    <span data-key="BracketLeft" class="key symbol">
+                        <span class="normal">´</span>
+                        <span class="shift">`</span>
+                    </span>
+                    <span data-key="BracketRight" class="key symbol">
+                        <span class="normal">[</span>
+                        <span class="shift">{</span>
+                    </span>
                     <span data-key="Enter" class="key valid enter">Enter</span>
                 </div>
 
                 <div class="row">
-                    <span data-key="CapsLock" class="key capslock">CapsLock</span>
-                    <span data-key="KeyA" class="key valid">A</span>
-                    <span data-key="KeyS" class="key valid">S</span>
-                    <span data-key="KeyD" class="key valid">D</span>
-                    <span data-key="KeyF" class="key indicator valid">F</span>
-                    <span data-key="KeyG" class="key valid">G</span>
-                    <span data-key="KeyH" class="key valid">H</span>
-                    <span data-key="KeyJ" class="key indicator valid">J</span>
-                    <span data-key="KeyK" class="key valid">K</span>
-                    <span data-key="KeyL" class="key valid">L</span>
-                    <span data-key="Semicolon" class="key">Ç</span>
-                    <span data-key="Quote" class="key symbol">~ ^</span>
-                    <span data-key="Backslash" class="key symbol">] }</span>
+                    <span data-key="CapsLock" class="key capslock" :class="{active: this.state.caps}">CapsLock</span>
+                    <span data-key="KeyA" class="key letter valid">
+                        <span class="normal">a</span>
+                        <span class="shift">A</span>
+                    </span>
+                    <span data-key="KeyS" class="key letter valid">
+                        <span class="normal">s</span>
+                        <span class="shift">S</span>
+                    </span>
+                    <span data-key="KeyD" class="key letter valid">
+                        <span class="normal">d</span>
+                        <span class="shift">D</span>
+                    </span>
+                    <span data-key="KeyF" class="key letter indicator valid">
+                        <span class="normal">f</span>
+                        <span class="shift">F</span>
+                    </span>
+                    <span data-key="KeyG" class="key letter valid">
+                        <span class="normal">g</span>
+                        <span class="shift">G</span>
+                    </span>
+                    <span data-key="KeyH" class="key letter valid">
+                        <span class="normal">h</span>
+                        <span class="shift">H</span>
+                    </span>
+                    <span data-key="KeyJ" class="key letter indicator valid">
+                        <span class="normal">j</span>
+                        <span class="shift">J</span>
+                    </span>
+                    <span data-key="KeyK" class="key letter valid">
+                        <span class="normal">k</span>
+                        <span class="shift">K</span>
+                    </span>
+                    <span data-key="KeyL" class="key letter valid">
+                        <span class="normal">l</span>
+                        <span class="shift">L</span>
+                    </span>
+                    <span data-key="Semicolon" class="key letter">
+                        <span class="normal">ç</span>
+                        <span class="shift">Ç</span>
+                    </span>
+                    <span data-key="Quote" class="key symbol">
+                        <span class="normal">~</span>
+                        <span class="shift">^</span>
+                    </span>
+                    <span data-key="Backslash" class="key symbol">
+                        <span class="normal">]</span>
+                        <span class="shift">}</span>
+                    </span>
                 </div>
 
                 <div class="row">
-                    <span data-key="ShiftLeft" class="key shift">Shift</span>
-                    <span data-key="IntlBackslash" class="key symbol">\ |</span>
-                    <span data-key="KeyZ" class="key valid">Z</span>
-                    <span data-key="KeyX" class="key valid">X</span>
-                    <span data-key="KeyC" class="key valid">C</span>
-                    <span data-key="KeyV" class="key valid">V</span>
-                    <span data-key="KeyB" class="key valid">B</span>
-                    <span data-key="KeyN" class="key valid">N</span>
-                    <span data-key="KeyM" class="key valid">M</span>
-                    <span data-key="Comma" class="key valid symbol">, &lt;</span>
-                    <span data-key="Period" class="key valid symbol">. &gt;</span>
-                    <span data-key="Slash" class="key symbol">; :</span>
-                    <span data-key="IntlRo" class="key symbol">/ ?</span>
-                    <span data-key="ShiftRight" class="key shiftright">Shift</span>
+                    <span data-key="ShiftLeft" class="key shift" :class="{active: this.state.shiftLeft}">Shift</span>
+                    <span data-key="IntlBackslash" class="key symbol">
+                        <span class="normal">|</span>
+                        <span class="shift">\</span>
+                    </span>
+                    <span data-key="KeyZ" class="key letter valid">
+                        <span class="normal">z</span>
+                        <span class="shift">Z</span>
+                    </span>
+                    <span data-key="KeyX" class="key letter valid">
+                        <span class="normal">x</span>
+                        <span class="shift">X</span>
+                    </span>
+                    <span data-key="KeyC" class="key letter valid">
+                        <span class="normal">c</span>
+                        <span class="shift">C</span>
+                    </span>
+                    <span data-key="KeyV" class="key letter valid">
+                        <span class="normal">v</span>
+                        <span class="shift">V</span>
+                    </span>
+                    <span data-key="KeyB" class="key letter valid">
+                        <span class="normal">b</span>
+                        <span class="shift">B</span>
+                    </span>
+                    <span data-key="KeyN" class="key letter valid">
+                        <span class="normal">n</span>
+                        <span class="shift">N</span>
+                    </span>
+                    <span data-key="KeyM" class="key letter valid">
+                        <span class="normal">m</span>
+                        <span class="shift">M</span>
+                    </span>
+                    <span data-key="Comma" class="key valid symbol">
+                        <span class="normal">,</span>
+                        <span class="shift">&lt;</span>
+                    </span>
+                    <span data-key="Period" class="key valid symbol">
+                        <span class="normal">.</span>
+                        <span class="shift">&gt;</span>
+                    </span>
+                    <span data-key="Slash" class="key symbol">
+                        <span class="normal">;</span>
+                        <span class="shift">:</span>
+                    </span>
+                    <span data-key="IntlRo" class="key symbol">
+                        <span class="normal">/</span>
+                        <span class="shift">?</span>
+                    </span>
+                    <span data-key="ShiftRight" class="key shiftright" :class="{active: this.state.shiftRight}">Shift</span>
                 </div>
 
                 <div class="row">

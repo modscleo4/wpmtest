@@ -317,7 +317,7 @@ a:hover {
 }
 
 .keyboard {
-    --gap: 12px;
+    --gap: 8px;
     display: grid;
     grid-auto-flow: row;
     grid-gap: var(--gap);
@@ -358,11 +358,12 @@ a:hover {
     font-size: 0.95rem;
     padding: 4px;
     user-select: none;
-    transition: background-color 100ms ease-in-out;
+    transition: background-color 100ms ease-out;
 }
 
 .keyboard .key::before {
     background-color: var(--input-background-color-disabled);
+    transition: background-color 100ms ease-out;
 }
 
 .keyboard .key.indicator {
@@ -376,7 +377,7 @@ a:hover {
 }
 
 .keyboard .key.space {
-    width: 16rem;
+    width: 14.6rem;
 }
 
 .keyboard .key.tab {
@@ -390,7 +391,7 @@ a:hover {
 }
 
 .keyboard .key.shift {
-    width: 2.6rem;
+    width: 2.60rem;
     font-size: 0.75rem;
 }
 
@@ -417,7 +418,6 @@ a:hover {
     top: 0;
     left: -12px;
     border-radius: 4px;
-    transition: background-color 100ms ease-in-out;
 }
 .keyboard .key.enter {
     width: 2.75rem;
@@ -437,4 +437,36 @@ a:hover {
     background-color: var(--btn-background-color-hover);
     border-color: var(--btn-background-color-hover);
     color: var(--btn-text-color);
+}
+
+.keyboard .key .normal {
+    display: inline;
+}
+
+.keyboard .key .shift {
+    display: none;
+}
+
+.keyboard.shift .key .normal {
+    display: none;
+}
+
+.keyboard.shift .key .shift {
+    display: inline;
+}
+
+.keyboard.caps .key.letter .normal {
+    display: none;
+}
+
+.keyboard.caps .key.letter .shift {
+    display: inline;
+}
+
+.keyboard.caps.shift .key.letter .normal {
+    display: inline;
+}
+
+.keyboard.caps.shift .key.letter .shift {
+    display: none;
 }
