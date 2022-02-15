@@ -322,6 +322,13 @@ a:hover {
     grid-auto-flow: row;
     grid-gap: var(--gap);
     justify-content: center;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 100ms ease-in-out;
+}
+
+.input-wrapper:focus-within ~ .keyboard {
+    max-height: 300px;
 }
 
 .keyboard .row {
@@ -377,7 +384,7 @@ a:hover {
 }
 
 .keyboard .key.space {
-    width: 14.6rem;
+    width: calc(6 * 2rem + 6 * var(--gap));
 }
 
 .keyboard .key.tab {
@@ -419,6 +426,7 @@ a:hover {
     left: -12px;
     border-radius: 4px;
 }
+
 .keyboard .key.enter {
     width: 2.75rem;
     height: calc(4rem + var(--gap));
